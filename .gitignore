@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+.vscode/launch.json
+.vscode/extensions.json
+.vscode/c_cpp_properties.json
+.pio/build/project.checksum
+.pio/build/nodemcuv2/ld/local.eagle.app.v6.common.ld
+.pio/build/nodemcuv2/firmware.elf
+.pio/build/nodemcuv2/firmware.bin
+.pio/build/nodemcuv2/.sconsign39.dblite
