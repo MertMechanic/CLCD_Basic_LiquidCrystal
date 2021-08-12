@@ -1,12 +1,12 @@
 // {
-//     "name": "WiFiBasic_ESP8266",
+//     "name": "CLCD_Basic_LiquidCrystal",
 //     "version": "1.0.0",
 //     "description": "A \"Hello world\" program is a computer program that outputs \"Hello World\" (or some variant) on a display device",
 //     "keywords": "planet, happiness, people",
 //     "repository":
 //     {
 //       "type": "git",
-//       "url": "https://github.com/MertMechanic/WiFiBasic_ESP8266.git"
+//       "url": "https://github.com/MertMechanic/CLCD_Basic_LiquidCrystal.git"
 //     },
 //     "authors":
 //     [

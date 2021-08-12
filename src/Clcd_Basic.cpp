@@ -90,41 +90,46 @@ void Clcd_Basic::setLine(String *_pText, int _lineNumber)
 
     //Fix Length
     int lenghtTxt = _pText->length();
+    char staticCharArray[m_CountOfSignsPerRows];
     for (size_t i = 0; i < m_CountOfSignsPerRows; i++)
     {
 
         if (i < lenghtTxt)
         {
-            this->m_Line[_lineNumber][i] = _pText->charAt(i);
+            staticCharArray[i] = _pText->charAt(i);
         }
         else
         {
-            this->m_Line[_lineNumber][i] = ' ';
+            staticCharArray[i] = ' ';
         }
     }
     //
 
-    this->turnOnBacklightAndTurnOffLater();
-    m_pLcd->setCursor(0, _lineNumber); // Cursor0 , Linea0
-    m_pLcd->print(mClearLineStr);
-    m_pLcd->setCursor(0, _lineNumber);
-
-#ifdef debug
-    Serial.print("Clcd_Basic: printing:");
-#endif
-
-    //Print Each Sign to out
-    for (size_t i = 0; i < m_CountOfSignsPerRows; i++)
+    //Check something changed
+    if (memcmp_P(this->m_Line[_lineNumber], staticCharArray, m_CountOfSignsPerRows-1) != 0)
     {
-#ifdef debug
-        Serial.print(this->m_Line[_lineNumber][i]);
-#endif
-        m_pLcd->print(this->m_Line[_lineNumber][i]);
-    }
+        this->turnOnBacklightAndTurnOffLater();
+        m_pLcd->setCursor(0, _lineNumber); // Cursor0 , Linea0
+        m_pLcd->print(mClearLineStr);
+        m_pLcd->setCursor(0, _lineNumber);
 
 #ifdef debug
-    Serial.println();
+        Serial.print("Clcd_Basic: printing:");
 #endif
+
+        //Print Each Sign to out
+        for (size_t i = 0; i < m_CountOfSignsPerRows; i++)
+        {
+#ifdef debug
+            Serial.print(this->m_Line[_lineNumber][i]);
+#endif
+            m_pLcd->print(this->m_Line[_lineNumber][i]);
+        }
+
+#ifdef debug
+        Serial.println();
+#endif
+    }
 }
 
 void Clcd_Basic::setLine(const char *_pText, int _lineNumber)
