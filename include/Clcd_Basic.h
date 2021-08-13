@@ -49,6 +49,7 @@ public:
     void setDisplayTextAndClear(String *_pTextA, String *_pTextB);
     void setDisplayText(char *_pTextA, char *_pTextB);
     void showMessageWithValue(String *_pText, int _value, int _lineNumber);
+    void showMessageWithValueAndUnit(String *_pText, int _value,String *_pUnitText, int _lineNumber);
 
     static void attachTimerToBackLightTurnoff();
     static void turnOffBackLight();

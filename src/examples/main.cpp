@@ -26,15 +26,35 @@ void loop() {
 
   Clcd_Basic::getInstance().setDisplayTextAndClear(&str1, &str2);
 
-  str1 = "Nice, Nice";
-  str2 = "Well Done!";
+  String str1setDisplayTextAndClear = "Nice, Nice";
+  String str2setDisplayTextAndClear = "Well Done!";
+  String str3setDisplayTextAndClear = "If you see it";
+  String str4setDisplayTextAndClear = "you can kill iu!";
+  str1 = "Value:";
+  str2 = "Messung:";
+
+  String unit1 = "mm";
+  String unit2 = "°C";
 
   delay(500);
 
-  Clcd_Basic::getInstance().setDisplayTextAndClear(&str1, &str2);
+  Clcd_Basic::getInstance().setDisplayTextAndClear(&str1setDisplayTextAndClear, &str2setDisplayTextAndClear);
 
-  str1 = "Value:";
-  str2 = "Messung:";
+
+  delay(500);
+
+  Clcd_Basic::getInstance().setDisplayTextAndClear(&str3setDisplayTextAndClear, &str4setDisplayTextAndClear);
+
+  for(int i = 0 ; i < 100; i++)
+  {
+  
+    Clcd_Basic::getInstance().showMessageWithValueAndUnit(&str1, i, &unit1, 0);
+    Clcd_Basic::getInstance().showMessageWithValueAndUnit(&str2, i, &unit2,  1);
+    
+  }
+
+Clcd_Basic::getInstance().setDisplayTextAndClear(&str1, &str2);
+
 
 
   for(int i = 0 ; i < 100; i++)
@@ -45,7 +65,7 @@ void loop() {
     
   }
 
-  for(int i = 0 ; i < 2000000; i++)
+  for(int i = 0 ; i < 100; i++)
   {
     value1 = String(i);
     value2 = String(i++);
@@ -56,7 +76,11 @@ void loop() {
     Clcd_Basic::getInstance().setLineUpdate(&out2, 1);
   }
 
-  for(int i = 2000000 ; i > 0; i--)
+  delay(500);
+
+  Clcd_Basic::getInstance().setDisplayTextAndClear(&str3setDisplayTextAndClear, &str4setDisplayTextAndClear);
+
+  for(int i = 100 ; i > 0; i--)
   {
     value1 = String(i);
     value2 = String(i--);

@@ -38,9 +38,9 @@ void Clcd_Basic::init()
         }
     }
 
-    for (size_t row = 0; row < m_CountOfRows; row++)
+    for (int row = 0; row < m_CountOfRows; row++)
     {
-        for (size_t col = 0; col < m_CountOfSignsPerRows; col++)
+        for (int col = 0; col < m_CountOfSignsPerRows; col++)
         {
             this->m_Line[row][col] = ' ';
         }
@@ -52,7 +52,7 @@ void Clcd_Basic::setLineUpdate(String *_pText, int _lineNumber)
 
     char staticLengthCharNewTxt[m_CountOfSignsPerRows];
     int lenghtTxt = _pText->length();
-    for (size_t i = 0; i < m_CountOfSignsPerRows; i++)
+    for (int i = 0; i < m_CountOfSignsPerRows; i++)
     {
 
         if (i < lenghtTxt)
@@ -66,7 +66,7 @@ void Clcd_Basic::setLineUpdate(String *_pText, int _lineNumber)
     }
     //
     this->turnOnBacklightAndTurnOffLater();
-    for (size_t i = 0; i < m_CountOfSignsPerRows; i++)
+    for (int i = 0; i < m_CountOfSignsPerRows; i++)
     {
         if (this->m_Line[_lineNumber][i] != staticLengthCharNewTxt[i])
         {
@@ -91,7 +91,7 @@ void Clcd_Basic::setLine(String *_pText, int _lineNumber)
     //Fix Length
     int lenghtTxt = _pText->length();
     char staticCharArray[m_CountOfSignsPerRows];
-    for (size_t i = 0; i < m_CountOfSignsPerRows; i++)
+    for (int i = 0; i < m_CountOfSignsPerRows; i++)
     {
 
         if (i < lenghtTxt)
@@ -118,7 +118,7 @@ void Clcd_Basic::setLine(String *_pText, int _lineNumber)
 #endif
 
         //Print Each Sign to out
-        for (size_t i = 0; i < m_CountOfSignsPerRows; i++)
+        for (int i = 0; i < m_CountOfSignsPerRows; i++)
         {
 #ifdef debug
             Serial.print(this->m_Line[_lineNumber][i]);
@@ -159,6 +159,15 @@ LiquidCrystal_I2C *Clcd_Basic::getLCDInstance()
 void Clcd_Basic::showMessageWithValue(String *_pText, int _value, int _lineNumber)
 {
     String givenText = *_pText + String(_value);
+
+    Serial.println(givenText);
+    this->setLineUpdate(&givenText, _lineNumber);
+}
+
+void Clcd_Basic::showMessageWithValueAndUnit(String *_pText, int _value, String *_pUnitText, int _lineNumber)
+{
+    String givenText = *_pText + String(_value);
+    givenText = givenText + *_pUnitText;
 
     Serial.println(givenText);
     this->setLineUpdate(&givenText, _lineNumber);
