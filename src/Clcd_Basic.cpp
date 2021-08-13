@@ -180,7 +180,9 @@ void Clcd_Basic::showMessageWithValueAndUnit(String *_pText, int _value, String 
     String givenText = *_pText + String(_value);
     givenText = givenText + *_pUnitText;
 
+#ifdef debug
     Serial.println(givenText);
+#endif
     this->setLineUpdate(&givenText, _lineNumber);
 }
 
