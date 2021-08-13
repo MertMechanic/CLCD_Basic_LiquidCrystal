@@ -29,7 +29,7 @@ void loop() {
   String str1setDisplayTextAndClear = "Nice, Nice";
   String str2setDisplayTextAndClear = "Well Done!";
   String str3setDisplayTextAndClear = "If you see it";
-  String str4setDisplayTextAndClear = "you can kill iu!";
+  String str4setDisplayTextAndClear = "you can kill it!";
   str1 = "Value:";
   str2 = "Messung:";
 

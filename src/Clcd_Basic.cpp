@@ -1,7 +1,7 @@
 #include "Clcd_Basic.h"
 #include "Defines.h"
 
-// #define debug
+#define debug 1
 
 Clcd_Basic::Clcd_Basic()
 {
@@ -87,6 +87,15 @@ void Clcd_Basic::setLineUpdate(String *_pText, int _lineNumber)
 void Clcd_Basic::setLine(String *_pText, int _lineNumber)
 {
     //Copy Text to char Array
+#ifdef debug
+    Serial.print("Clcd_Basic::setLine:: is called with:");
+    Serial.print("_pText: [");
+    Serial.print(*_pText);
+    Serial.print("], _lineNumber: [");
+    Serial.print(_lineNumber);
+    Serial.print("]");
+    Serial.println();
+#endif
 
     //Fix Length
     int lenghtTxt = _pText->length();
@@ -112,6 +121,8 @@ void Clcd_Basic::setLine(String *_pText, int _lineNumber)
         m_pLcd->setCursor(0, _lineNumber); // Cursor0 , Linea0
         m_pLcd->print(mClearLineStr);
         m_pLcd->setCursor(0, _lineNumber);
+
+        memcpy_P(this->m_Line[_lineNumber], staticCharArray, m_CountOfSignsPerRows);
 
 #ifdef debug
         Serial.print("Clcd_Basic: printing:");
