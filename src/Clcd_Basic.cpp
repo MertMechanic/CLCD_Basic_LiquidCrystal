@@ -1,7 +1,7 @@
 #include "Clcd_Basic.h"
 #include "Defines.h"
 
-#define debug 1
+// #define debug 1
 
 Clcd_Basic::Clcd_Basic()
 {
